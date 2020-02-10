@@ -120,7 +120,7 @@ namespace MazdaInventory
                 }
                 else if (RequestID == Defines.DealerRequestServerHit)
                 {
-                    IsBusy = false;
+                    //IsBusy = false;
                     Dictionary<String, Object> lDictionary = (Dictionary<String, Object>)result;
                     Dealer lDealer = (Dealer)lDictionary[Defines.KeyConnectionResponseContentObject];
                     if (lDealer.Isdealer == "true")
