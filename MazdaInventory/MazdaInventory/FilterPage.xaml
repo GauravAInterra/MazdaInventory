@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MazdaInventory.FilterPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Reset"
+                 IconImageSource="Reset.png"
+                 Order="Primary"
+                 Priority="0"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="#f5f5f5">
+            <StackLayout>
+                <StackLayout Margin="0,10,0,0">
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,0,0,5"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="SAVED SEARCHES" HorizontalOptions="Start"  VerticalOptions="Center" Margin="11,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
+                        <ImageButton x:Name="expandSearches" Source="Expand" WidthRequest="22" HeightRequest="22" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="11,0"/>
+                    </StackLayout>
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,5,0,0"/>
+                </StackLayout>
+                <StackLayout Margin="0,10,0,0">
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,0,0,5"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="MODEL YEAR" HorizontalOptions="Start"  VerticalOptions="Center" Margin="11,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
+                        <ImageButton x:Name="expandModelYears" Source="Expand" WidthRequest="22" HeightRequest="22" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="11,0"/>
+                    </StackLayout>
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,5,0,0"/>
+                </StackLayout>
+                <StackLayout Margin="0,10,0,0">
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,0,0,5"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="MODEL" HorizontalOptions="Start"  VerticalOptions="Center" Margin="11,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
+                        <ImageButton x:Name="expandModel" Source="Expand" WidthRequest="22" HeightRequest="22" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="11,0"/>
+                    </StackLayout>
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,5,0,0"/>
+                </StackLayout>
+                <StackLayout Margin="0,10,0,0">
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,0,0,5"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="TRIM" HorizontalOptions="Start"  VerticalOptions="Center" Margin="11,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
+                        <ImageButton x:Name="expandTrim" Source="Expand" WidthRequest="22" HeightRequest="22" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="11,0"/>
+                    </StackLayout>
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,5,0,0"/>
+                </StackLayout>
+                <StackLayout Margin="0,10,0,0">
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,0,0,5"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="EXTERIOR COLOR" HorizontalOptions="Start"  VerticalOptions="Center" Margin="11,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
+                        <ImageButton x:Name="expandExteriorColor" Source="Expand" WidthRequest="22" HeightRequest="22" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="11,0"/>
+                    </StackLayout>
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,5,0,0"/>
+                </StackLayout>
+                <StackLayout Margin="0,10,0,0">
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,0,0,5"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="INTERIOR COLOR" HorizontalOptions="Start"  VerticalOptions="Center" Margin="11,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
+                        <ImageButton x:Name="expandInteriorColor" Source="Expand" WidthRequest="22" HeightRequest="22" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="11,0"/>
+                    </StackLayout>
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,5,0,0"/>
+                </StackLayout>
+                <StackLayout Margin="0,10,0,0">
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,0,0,5"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="PACKAGE" HorizontalOptions="Start"  VerticalOptions="Center" Margin="11,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
+                        <ImageButton x:Name="expandPackage" Source="Expand" WidthRequest="22" HeightRequest="22" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="11,0"/>
+                    </StackLayout>
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,5,0,0"/>
+                </StackLayout>
+                <StackLayout Margin="0,10,0,0">
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,0,0,5"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="ACCESSORIES" HorizontalOptions="Start"  VerticalOptions="Center" Margin="11,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
+                        <ImageButton x:Name="expandAccessories" Source="Expand" WidthRequest="22" HeightRequest="22" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="11,0"/>
+                    </StackLayout>
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,5,0,0"/>
+                </StackLayout>
+                <StackLayout Margin="0,10,0,0">
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,0,0,5"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="STATUS" HorizontalOptions="Start"  VerticalOptions="Center" Margin="11,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
+                        <ImageButton x:Name="expandStatus" Source="Expand" WidthRequest="22" HeightRequest="22" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="11,0"/>
+                    </StackLayout>
+                    <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,5,0,0"/>
+                </StackLayout>
+                <Button x:Name="refineButton" Clicked="refineDealerClicked" Text="REFINE DEALER SEARCH" BackgroundColor="#171717" WidthRequest="250" HeightRequest="40" HorizontalOptions="Center" Margin="0,40,0,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="16" TextColor="White"/>
+                <Button x:Name="nextButton" Clicked="nextClicked" Text="SUBMIT" BackgroundColor="#171717" WidthRequest="250" HeightRequest="40" HorizontalOptions="Center" Margin="0,20,0,25" FontFamily="{StaticResource SemiBoldFont}" FontSize="16" TextColor="White"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MazdaInventory.CustomRenderer;assembly=MazdaInventory"
+             mc:Ignorable="d"
+             x:Class="MazdaInventory.DealerSearchPage"
+             Title="DEALER SEARCH">
+    <ScrollView BackgroundColor="#f5f5f5">
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="Center" Margin="0,20,0,0">
+                <StackLayout x:Name="zipHeading" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label x:Name="zipLabel" Text="ZIP CODE" HorizontalOptions="Center" VerticalOptions="Start" Margin="10,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="16" TextColor="#101010"/>
+                    <Image x:Name="zipImage" Source="Rectangle" Margin="0,11,0,10"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnZipTapped" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout x:Name="dealerHeading" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label x:Name="dealerLabel" Text="DEALER NAME" HorizontalOptions="Center" VerticalOptions="Start" Margin="10,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="16" TextColor="#999999"/>
+                    <Image x:Name="dealerImage" Source="RectangleDealerNotSelected" Margin="0,11,0,10"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnDealerTapped" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout x:Name="corpHeading" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label x:Name="corpLabel" Text="CORPORATE" HorizontalOptions="Center" VerticalOptions="Start" Margin="10,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="16" TextColor="#999999"/>
+                    <Image x:Name="corpImage" Source="RectangleCorpNotSelected" Margin="0,11,0,10"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCorpTapped" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout x:Name="zipContent">
+                <StackLayout Margin="10">
+                    <Label Text="ZIP CODE" HorizontalOptions="Start" VerticalOptions="Start" Margin="5,0,0,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="12" TextColor="#101010"/>
+                    <local:RoundedBorderEntry TextColor="#101010" x:Name="zipCode" FontSize="16"/>
+                </StackLayout>
+                <StackLayout Margin="10">
+                    <Label Text="RADIUS" HorizontalOptions="Start" VerticalOptions="Start" Margin="5,0,0,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="12" TextColor="#101010"/>
+                    <local:RoundedBorderPicker x:Name="radius" Image="DropDown" TextColor="#101010" FontSize="16" FontFamily="{StaticResource SemiBoldFont}">
+                        <local:RoundedBorderPicker.Items>
+                            <x:String>5 MILES</x:String>
+                            <x:String>50 MILES</x:String>
+                            <x:String>100 MILES</x:String>
+                            <x:String>150 MILES</x:String>
+                            <x:String>200 MILES</x:String>
+                            <x:String>250 MILES</x:String>
+                        </local:RoundedBorderPicker.Items>
+                    </local:RoundedBorderPicker>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout x:Name="dealerContent" Margin="10" IsVisible="False">
+                <Label Text="DEALER NAME" HorizontalOptions="Start" VerticalOptions="Start" Margin="5,0,0,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="12" TextColor="#101010"/>
+                <local:RoundedBorderEntry TextColor="#101010" x:Name="dealerName" FontSize="16" FontFamily="{StaticResource SemiBoldFont}"/>
+            </StackLayout>
+            <StackLayout x:Name="corpContent" IsVisible="False">
+                <StackLayout Margin="10">
+                    <Label Text="REGION" HorizontalOptions="Start" VerticalOptions="Start" Margin="5,0,0,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="12" TextColor="#101010"/>
+                    <local:RoundedBorderPicker Image="arrowDown" TextColor="#101010" x:Name="region" FontSize="16" FontFamily="{StaticResource SemiBoldFont}"/>
+                </StackLayout>
+                <StackLayout Margin="10">
+                    <Label Text="DISTRICT" HorizontalOptions="Start" VerticalOptions="Start" Margin="5,0,0,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="12" TextColor="#101010"/>
+                    <local:RoundedBorderPicker Image="arrowDown" TextColor="#101010" x:Name="district" FontSize="16"/>
+                </StackLayout>
+            </StackLayout>
+            <Button x:Name="searchButton" Clicked="searchClicked" Text="SEARCH" BackgroundColor="#171717" WidthRequest="250" HeightRequest="40" HorizontalOptions="Center" Margin="20" FontFamily="{StaticResource SemiBoldFont}" FontSize="16" TextColor="White"/>
+            <StackLayout>
+                <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,0,0,5"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="FAVORITE DEALERS" HorizontalOptions="Start" VerticalOptions="Center" Margin="11,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
+                    <ImageButton x:Name="expandFavorites" Source="Expand" WidthRequest="22" HeightRequest="22" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="11,0"/>
+                </StackLayout>
+                <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,5,0,0"/>
+            </StackLayout>
+            <StackLayout Margin="0,10,0,0">
+                <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,0,0,5"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="DEALERS" HorizontalOptions="Start"  VerticalOptions="Center" Margin="11,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
+                    <ImageButton x:Name="expandDealers" Source="Expand" WidthRequest="22" HeightRequest="22" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="11,0"/>
+                </StackLayout>
+                <BoxView Color="#d5d5d5" HeightRequest="1" Margin="0,5,0,0"/>
+            </StackLayout>
+            <Button x:Name="nextButton" Clicked="nextClicked" Text="NEXT" BackgroundColor="#171717" WidthRequest="250" HeightRequest="40" HorizontalOptions="Center" Margin="20" FontFamily="{StaticResource SemiBoldFont}" FontSize="16" TextColor="White"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

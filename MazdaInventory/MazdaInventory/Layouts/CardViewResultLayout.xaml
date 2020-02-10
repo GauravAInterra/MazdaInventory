@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MazdaInventory.Layouts.CardViewResultLayout">
+  <ContentView.Content>
+        <Frame IsClippedToBounds="True" HasShadow="True" Padding="0" BackgroundColor="White" >
+            <Frame.Margin>
+                <OnPlatform x:TypeArguments="Thickness" Android="10" iOS="10"/>
+            </Frame.Margin>
+            <StackLayout Orientation="Vertical" Margin="10">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="mazdacar"/>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                        <Label HorizontalOptions="EndAndExpand" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010" Text="MSRP"/>
+                        <Label HorizontalOptions="EndAndExpand" FontFamily="{StaticResource SemiBoldFont}" FontSize="16" TextColor="#101010" Text="{Binding Amount, Mode = TwoWay}"/>
+                    </StackLayout>
+                </StackLayout>
+                <Label HorizontalOptions="Start" VerticalOptions="Center" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010" Text="{Binding Name, Mode = TwoWay}"/>
+                <Label HorizontalOptions="Start" VerticalOptions="Center" FontFamily="{StaticResource SemiBoldFont}" FontSize="20" TextColor="#101010" Text="{Binding Name, Mode = TwoWay}"/>
+                <Label HorizontalOptions="Start" VerticalOptions="Center" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010" Text="{Binding Name, Mode = TwoWay}"/>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

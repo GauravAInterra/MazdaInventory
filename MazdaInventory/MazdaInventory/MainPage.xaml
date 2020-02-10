@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:effects="clr-namespace:MazdaInventory.Effects;assembly=MazdaInventory"
+             xmlns:local="clr-namespace:MazdaInventory.CustomRenderer;assembly=MazdaInventory"
+             mc:Ignorable="d"
+             x:Class="MazdaInventory.MainPage"
+             NavigationPage.HasNavigationBar="false">
+
+    <ScrollView BackgroundColor="#f5f5f5">
+        <AbsoluteLayout VerticalOptions="Fill">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="mazdaheader" />
+                    <Image Source="mazdaLoginLogo" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Grid>
+                <Label Text="MOBILE INVENTORY TRACKER" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,20,0,0" FontFamily="{StaticResource BoldFont}" FontSize="14" TextColor="#101010"/>
+                <Label Text="WSL LOGIN" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,20,0,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="24" TextColor="#101010"/>
+                <StackLayout Margin="10,46,10,10">
+                    <Label Text="USER NAME" HorizontalOptions="Start" VerticalOptions="Start" Margin="5,0,0,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="12" TextColor="#101010"/>
+                    <local:RoundedBorderEntry TextColor="#101010" x:Name="userName" FontSize="16"/>
+                </StackLayout>
+                <StackLayout Margin="10,10,5,10" HorizontalOptions="Fill">
+                    <Label Text="PASSWORD" HorizontalOptions="Start" VerticalOptions="Start" Margin="5,0,0,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="12" TextColor="#101010"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <local:RoundedBorderEntry x:Name="passwordHidden" TextColor="#101010" IsPassword="True" Grid.Column="0" HorizontalOptions="Fill" IsVisible="True" Text="{Binding Source={x:Reference passwordShown}, Path=Text, Mode=TwoWay}"  FontSize="16"/>
+                        <local:RoundedBorderEntry x:Name="passwordShown" TextColor="#101010" IsPassword="False" Grid.Column="0" HorizontalOptions="Fill" IsVisible="False" Text="{Binding Source={x:Reference passwordHidden}, Path=Text, Mode=TwoWay}"  FontSize="16"/>
+                        <ImageButton x:Name="ShowPasswordButton" Source="showHide" BackgroundColor="White" WidthRequest="18" HeightRequest="18" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0,0,9,0">
+                            <ImageButton.Triggers>
+                                <EventTrigger Event="Clicked">
+                                    <effects:ShowPasswordTriggerAction EntryPasswordName="passwordHidden" EntryTextName="passwordShown" IconImageName="ShowPasswordButtonIcon" />
+                                </EventTrigger>
+                            </ImageButton.Triggers>
+                        </ImageButton>
+                    </Grid>
+                </StackLayout>
+                <StackLayout Margin="10,0" Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox x:Name="rememberMe" Color="#d5d5d5"  BackgroundColor="White" effects:RoundCornersEffect.CornerRadius="3" HeightRequest="20"></CheckBox>
+                        <Label Text="REMEMBER ME" HorizontalOptions="Start" VerticalOptions="Center" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
+                    </StackLayout>
+                    <Label x:Name="forgotPassword" Text="FORGOT PASSWORD" TextDecorations="Underline" VerticalOptions="Center" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
+                </StackLayout>
+                <Button x:Name="loginButton" Clicked="BtnRetrive_Clicked" Text="LOGIN" BackgroundColor="#171717" WidthRequest="250" HeightRequest="40" HorizontalOptions="Center" Margin="0,85,0,51" FontFamily="{StaticResource SemiBoldFont}" FontSize="16" TextColor="White"/>
+            </StackLayout>
+            <ActivityIndicator x:Name="activityIndicator" IsRunning="{Binding IsBusy}"  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5,-1,-1" />
+        </AbsoluteLayout>
+    </ScrollView>
+</ContentPage>

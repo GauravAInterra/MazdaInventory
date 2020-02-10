@@ -1,0 +1,27 @@
+{
+  "images": [
+    {
+      "appearances": [],
+      "scale": "1x",
+      "idiom": "universal",
+      "filename": "Sort.png"
+    },
+    {
+      "appearances": [],
+      "scale": "2x",
+      "idiom": "universal",
+      "filename": "Sort@2.png"
+    },
+    {
+      "appearances": [],
+      "scale": "3x",
+      "idiom": "universal",
+      "filename": "Sort@3.png"
+    }
+  ],
+  "properties": {},
+  "info": {
+    "version": 1,
+    "author": ""
+  }
+}
