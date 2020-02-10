@@ -65,14 +65,6 @@ namespace MazdaInventory.ConnectionManager
                     ServerConnectionRequestParm.AddParameter("password", tempString[1]);
                     ServerConnectionRequestParm.AddParameter("login-form-type", "pwd");
                 }
-                else if (requestIDforhit == Defines.DealerRequestServerHit)
-                {
-                    ServerConnectionRequestParm.AddHeader("Accept", "application/x-www-form-urlencoded");
-                    ServerConnectionRequestParm.AddHeader("Accept", "application/xml");
-                    ServerConnectionRequestParm.AddHeader("RS_SEC_HDR_IV_NAME", "BrsjDK6t5TSQ+SoxRS6QAg==");
-                    ServerConnectionRequestParm.AddHeader("RS_SEC_HDR_TOKEN_NAME", "Y6CzeV3vPYvyjR4cSI2y38FRk8EcwMjNr0QHlDqe0rU=");
-                    ServerConnectionRequestParm.AddHeader("RS_SEC_HDR_VENDOR_ID", "mnao");
-                }
                 else
                 {
                     string tempCooki = Utilities.getCookies();
@@ -136,12 +128,7 @@ namespace MazdaInventory.ConnectionManager
                             }
                         }
                     }
-                    else if (requestIDforhit == Defines.DealerRequestServerHit)
-                    {
-                        String sqliteDealerDataValue = Encoding.UTF8.GetString(serverResponse.RawBytes);
-                        lDealer = Utilities.SaveDealerData(sqliteDealerDataValue);
-                    }
-                    //CommunicationWebView.communicationWebView = null;
+                    
                     if (Content.IndexOf("To maintain your login session", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         if (requestIDforhit == Defines.LoginRequestServerHit)
@@ -180,13 +167,6 @@ namespace MazdaInventory.ConnectionManager
                         lSuccessDictionary[Defines.KeyConnectionErrorType] = ConnectionErrorType.EConnectionError_None;
                         if (requestIDforhit == Defines.LoginRequestServerHit)
                             lSuccessDictionary[Defines.KeyLoginCookies] = this.cookies;
-                        if (requestIDforhit == Defines.DealerRequestServerHit)
-                        {
-                            lSuccessDictionary[Defines.KeyConnectionResponseContentObject] = lDealer;
-                            String sqliteDealerData = Encoding.UTF8.GetString(serverResponse.RawBytes);
-                            SQLiteRowData rowData = new SQLiteRowData(requestIDforhit, sqliteDealerData);
-                            await SQLiteManager.SharedInstance().SaveItem(rowData);
-                        }
                         objNetworkCommunicationListener.notifyHTTPRespons(lSuccessDictionary, requestIDforhit);
                     }
                 }

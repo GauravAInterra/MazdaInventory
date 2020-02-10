@@ -63,8 +63,6 @@ namespace MazdaInventory.Commons
         public static readonly String NoResponse = "There is no response from Server.";
         /// The RequestID for login.
         public static readonly String LoginRequestServerHit = "login";
-        /// The RequestID for Dealer.
-        public static readonly String DealerRequestServerHit = "dealer";
         /// The is static pic enabled.
         public static bool isStaticPicEnabled = true;
     }

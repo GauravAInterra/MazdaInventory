@@ -42,22 +42,8 @@ namespace MazdaInventory
             forgotPassword.GestureRecognizers.Add(forgetPassword_tap);
 
         }
-        private async void BtnRetrive_Clicked(object sender, EventArgs e)
-        {
-            var version = await firebaseHelper.GetVersion();
-            if (version != null)
-            {
-                await DisplayAlert("Success", "Version Retrive Successfully: "+version.updated_version, "OK");
 
-            }
-            else
-            {
-                await DisplayAlert("Success", "No Version Available", "OK");
-            }
-
-        }
-
-        private void loginSuccess(object sender, EventArgs e)
+        private void BtnLogin_Clicked(object sender, EventArgs e)
         {
             IsBusy = true;
             UserName = userName.Text;
@@ -71,7 +57,6 @@ namespace MazdaInventory
             try
             {
                 MainController ms = new MainController();
-                //Navigation.PushAsync(new DealerSearchPage(false));
                 ms.LoginRequest(UserName, Password, this, Defines.LoginRequestServerHit);
             }
             catch (Exception ex)
@@ -115,27 +100,6 @@ namespace MazdaInventory
                         Utilities.saveDefaultView(dataView.Value);
                     }
                     SQLiteManager.SharedInstance().SaveUserPreferences(lLoginModel);
-                    MainController ms = new MainController();
-                    //ms.GetDealerData(String searchType, String param1, String param2, this, Defines.DealerRequestServerHit);
-                }
-                else if (RequestID == Defines.DealerRequestServerHit)
-                {
-                    IsBusy = false;
-                    Dictionary<String, Object> lDictionary = (Dictionary<String, Object>)result;
-                    Dealer lDealer = (Dealer)lDictionary[Defines.KeyConnectionResponseContentObject];
-                    if (lDealer.Isdealer == "true")
-                    {
-                        Console.WriteLine("isDealerTrue");
-                        String lUserName = UserName + ", " + "Dealer";
-                        Navigation.PushAsync(new DealerSearchPage(true));
-                    }
-                    else
-                    {
-                        Console.WriteLine("isDealerFalse");
-                        String lUserName = UserName + ", " + "Corporate";
-                        Navigation.PushAsync(new DealerSearchPage(false));
-                    }
-                    
                 }
             }
             catch (Exception ex)

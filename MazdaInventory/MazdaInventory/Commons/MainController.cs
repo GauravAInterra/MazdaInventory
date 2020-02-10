@@ -142,51 +142,6 @@ namespace MazdaInventory.Commons
 					}
 				}
 			}
-            else if (RequestID == Defines.DealerRequestServerHit) // Specific For Dealer as Per Previous Prod v1.0
-            {
-                Dictionary<String, Object> lDictionary = (Dictionary<String, Object>)result;
-
-                Dealer lDealer = (Dealer)lDictionary[Defines.KeyConnectionResponseContentObject];
-                ConnectionErrorType lOriginalConnectionErrorType = (ConnectionErrorType)lDictionary[Defines.KeyConnectionErrorType];
-                //String lContent = (String)lDictionary[Defines.KeyConnectionResponseContentString];
-
-                bool IsError = (bool)lDictionary[Defines.IsError];
-                bool IsExp = (bool)lDictionary[Defines.IsException];
-
-                if (IsExp || IsError)
-                {
-                }
-                else
-                {
-                    String lConnectionResponseMessage = "";
-                    ConnectionErrorType lConnectionErrorType = ConnectionErrorType.EConnectionError_ServerSide_Others;
-
-                    Boolean lIsSuccessFull = true;
-
-                    if (lOriginalConnectionErrorType == ConnectionErrorType.EConnectionError_ServerSide_HTTPStatusCodeIsNot200)
-                    {
-                        lIsSuccessFull = false;
-
-                        lConnectionResponseMessage = "HTTP StatusCode Is Not 200";
-                        lConnectionErrorType = lOriginalConnectionErrorType;
-                    }
-
-                    Dictionary<String, Object> lReturnDictionary = new Dictionary<String, Object>();
-                    lReturnDictionary[Defines.KeyConnectionResponseHTTPStatusCode] = lDictionary[Defines.KeyConnectionResponseHTTPStatusCode];
-                    lReturnDictionary[Defines.KeyConnectionResponseMessage] = lConnectionResponseMessage;
-
-                    if (lIsSuccessFull)
-                    {
-                        lReturnDictionary[Defines.KeyConnectionResponseContentObject] = lDealer;
-                        lIConnectionCallbacks.ConnectionWasSuccessFullWithResult(lReturnDictionary, RequestID);
-                    }
-                    else
-                    {
-                        lReturnDictionary[Defines.KeyConnectionErrorType] = lConnectionErrorType;
-                        lIConnectionCallbacks.ConnectionFailedWithError(lReturnDictionary, RequestID);
-                    }
-                }
-            }
             else // For others Apis (Regions and Carlines)
 			{
 				Dictionary<String, Object> lResultDictionary = (Dictionary<String, Object>)result;
