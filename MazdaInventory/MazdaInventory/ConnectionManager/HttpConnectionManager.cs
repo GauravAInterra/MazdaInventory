@@ -78,7 +78,7 @@ namespace MazdaInventory.ConnectionManager
                 string serverRequestTime = serverRequest + "." + DateTime.Now.Millisecond;
                 string appEnvironmentValue = Utilities.getEnvironmentValue();
 
-                Task<IRestResponse> task = restClient.ExecuteTaskAsync(ServerConnectionRequestParm);
+                Task<IRestResponse> task = restClient.ExecuteAsync(ServerConnectionRequestParm);
                 var serverResponse = await task;
                 Console.WriteLine("This is server response : \n" + serverResponse.ToString());
 
