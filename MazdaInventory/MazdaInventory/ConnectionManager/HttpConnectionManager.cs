@@ -87,7 +87,6 @@ namespace MazdaInventory.ConnectionManager
                 //HttpStatusCode code = serverResponse.StatusCode;
                 string serverResponseValueTime = Utilities.GetTimestamp(DateTime.Now);
                 string serverResponseTime = serverResponseValueTime + "." + DateTime.Now.Millisecond;
-                Dealer lDealer = null;
                 HttpStatusCode lStatus = serverResponse.StatusCode;
                 if (serverResponse.StatusCode == HttpStatusCode.OK)
                 {
@@ -183,8 +182,6 @@ namespace MazdaInventory.ConnectionManager
                 }
 
                 ServerConnectionRequestParm = null;
-
-                
             }
             catch (Exception e)
             {

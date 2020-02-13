@@ -6,9 +6,6 @@ using MazdaInventory.SQLLite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MazdaInventory
@@ -70,6 +67,7 @@ namespace MazdaInventory
         {
             try
             {
+                IsBusy = false;
                 if (RequestID == Defines.LoginRequestServerHit)
                 {
                     Dictionary<String, Object> lDictionary = (Dictionary<String, Object>)result;
@@ -100,6 +98,7 @@ namespace MazdaInventory
                         Utilities.saveDefaultView(dataView.Value);
                     }
                     SQLiteManager.SharedInstance().SaveUserPreferences(lLoginModel);
+                    Navigation.PushAsync(new DealerSearchPage(false));
                 }
             }
             catch (Exception ex)

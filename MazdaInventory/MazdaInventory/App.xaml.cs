@@ -13,6 +13,7 @@ namespace MazdaInventory
             MainPage = new NavigationPage(new MainPage());
             MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.Black);
             MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.White);
+            
         }
 
         protected override void OnStart()

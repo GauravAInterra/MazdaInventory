@@ -21,7 +21,7 @@ namespace MazdaInventory.Model
                 "David", "John", "Paul", "Mark", "James",
                 "Andrew", "Scott", "Steven", "Robert", "Stephen",
                 "William", "Craig", "Michael", "Stuart", "Christopher",
-                "Alan", "Colin", "Brian", "Kevin"
+                "Alan", "Colin", "Brian"
             };
 
             Random rnd = new Random();

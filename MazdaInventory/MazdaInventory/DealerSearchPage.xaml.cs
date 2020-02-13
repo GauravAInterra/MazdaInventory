@@ -9,6 +9,9 @@ namespace MazdaInventory
     public partial class DealerSearchPage : ContentPage
     {
         public Boolean isDealer = false;
+
+
+
         public DealerSearchPage(Boolean isDealer)
         {
             InitializeComponent();
@@ -17,11 +20,11 @@ namespace MazdaInventory
 
             // Define the binding context
             BindingContext = this;
-            
+
 
             if (isDealer)
             {
-                //corpHeading.IsVisible = false;
+                corpHeading.IsVisible = false;
             }
             radius.SelectedIndex = 0;
         }
@@ -64,7 +67,28 @@ namespace MazdaInventory
         }
         private void searchClicked(object sender, EventArgs e)
         {
-            DisplayAlert("Search Alert", "searchAlert", "OK");
+            int distance = 50;
+            switch (radius.SelectedIndex)
+            {
+                case 0:
+                    distance = 50;
+                    break;
+                case 1:
+                    distance = 100;
+                    break;
+                case 2:
+                    distance = 150;
+                    break;
+                case 3:
+                    distance = 200;
+                    break;
+                case 4:
+                    distance = 250;
+                    break;
+
+            }
+            DisplayAlert("Search Alert", "zipCode" + zipCode.Text + ",radius" + distance, "OK");
+
         }
 
         private void nextClicked(object sender, EventArgs e)

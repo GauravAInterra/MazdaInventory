@@ -41,7 +41,6 @@
                     <Label Text="RADIUS" HorizontalOptions="Start" VerticalOptions="Start" Margin="5,0,0,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="12" TextColor="#101010"/>
                     <local:RoundedBorderPicker x:Name="radius" Image="DropDown" TextColor="#101010" FontSize="16" FontFamily="{StaticResource SemiBoldFont}">
                         <local:RoundedBorderPicker.Items>
-                            <x:String>5 MILES</x:String>
                             <x:String>50 MILES</x:String>
                             <x:String>100 MILES</x:String>
                             <x:String>150 MILES</x:String>
