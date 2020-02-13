@@ -17,7 +17,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="mazdaheader" />
+                    <Image Source="loginCurve" />
                     <Image Source="mazdaLoginLogo" HorizontalOptions="Center" VerticalOptions="Center"/>
                 </Grid>
                 <Label Text="MOBILE INVENTORY TRACKER" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,20,0,0" FontFamily="{StaticResource BoldFont}" FontSize="14" TextColor="#101010"/>
