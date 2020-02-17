@@ -1,20 +1,23 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using MazdaInventory.Commons;
+using MazdaInventory.ConnectionManager;
+using MazdaInventory.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MazdaInventory
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DealerSearchPage : ContentPage
+    public partial class DealerSearchPage : ContentPage, IConnectionCallbacks
     {
         public Boolean isDealer = false;
-
 
 
         public DealerSearchPage(Boolean isDealer)
         {
             InitializeComponent();
+            IsBusy = false;
             this.isDealer = isDealer;
             this.Title = "DEALER SEARCH";
 
@@ -67,6 +70,7 @@ namespace MazdaInventory
         }
         private void searchClicked(object sender, EventArgs e)
         {
+            IsBusy = true;
             int distance = 50;
             switch (radius.SelectedIndex)
             {
@@ -87,13 +91,28 @@ namespace MazdaInventory
                     break;
 
             }
-            DisplayAlert("Search Alert", "zipCode" + zipCode.Text + ",radius" + distance, "OK");
-
+            MainController ms = new MainController();
+            ms.GetDealerData("zip", zipCode.Text, distance+"",this, "zip");
         }
 
         private void nextClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new FilterPage());
+        }
+
+        public void ConnectionWasSuccessFullWithResult(object result, string RequestID)
+        {
+            Dictionary<String, Object> lDictionary = (Dictionary<String, Object>)result;
+            String lContent = (String)lDictionary[RequestID];
+            List<Dealer> dealers = Utilities.GetDealersFromResponse(lContent);
+            IsBusy = false;
+            DisplayAlert("Success", "Success","Ok");
+        }
+
+        public void ConnectionFailedWithError(object error, string RequestID)
+        {
+            IsBusy = false;
+            DisplayAlert("Faliure", "Faliure", "Ok");
         }
     }
 }

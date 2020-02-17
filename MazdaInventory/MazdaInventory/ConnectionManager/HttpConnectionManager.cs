@@ -67,12 +67,13 @@ namespace MazdaInventory.ConnectionManager
                 }
                 else
                 {
-                    string tempCooki = Utilities.getCookies();
+                    ServerConnectionRequestParm = new RestRequest(Method.GET);
+                    /*string tempCooki = Utilities.getCookies();
                     if (tempCooki != null && tempCooki != "")
                     {
                         ServerConnectionRequestParm.AddCookie("PD-S-SESSION-ID", tempCooki);
                     }
-                    ServerConnectionRequestParm.Resource = controllerUrl;
+                    ServerConnectionRequestParm.Resource = controllerUrl;*/
                 }
                 string serverRequest = Utilities.GetTimestamp(DateTime.Now);
                 string serverRequestTime = serverRequest + "." + DateTime.Now.Millisecond;
@@ -83,7 +84,7 @@ namespace MazdaInventory.ConnectionManager
                 Console.WriteLine("This is server response : \n" + serverResponse.ToString());
 
                 String Content = serverResponse.Content;
-                Console.WriteLine("This is server response : \n" + Content);
+                Console.WriteLine("This is server content : \n" + Content);
                 //HttpStatusCode code = serverResponse.StatusCode;
                 string serverResponseValueTime = Utilities.GetTimestamp(DateTime.Now);
                 string serverResponseTime = serverResponseValueTime + "." + DateTime.Now.Millisecond;
@@ -171,6 +172,8 @@ namespace MazdaInventory.ConnectionManager
                 }
                 else
                 {
+                    Console.WriteLine("This is server error1:"+ serverResponse.StatusCode);
+
                     Dictionary<String, Object> lErrorDictionary = new Dictionary<String, Object>();
                     lErrorDictionary[Defines.KeyConnectionResponseHTTPStatusCode] = serverResponse.StatusCode;
                     lErrorDictionary[Defines.KeyConnectionErrorType] = ConnectionErrorType.EConnectionError_ServerSide_HTTPStatusCodeIsNot200;

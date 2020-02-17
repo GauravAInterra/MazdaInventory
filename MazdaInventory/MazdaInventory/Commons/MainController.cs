@@ -5,6 +5,8 @@ using MazdaInventory.SQLLite;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace MazdaInventory.Commons
 {
@@ -180,41 +182,14 @@ namespace MazdaInventory.Commons
                             lConnectionErrorType = ConnectionErrorType.EConnectionError_ServerSide_EmptyResponse;
                         }
                     }
-                    else if (lContent.Contains("location data was successfully fetched."))
-                    {
-                        lConnectionResponseMessage = "location data was successfully fetched.";
-                        lConnectionErrorType = ConnectionErrorType.EConnectionError_None;
-
-                        String cookie = (String)lResultDictionary[Defines.KeyLocationDataCookies];
-                    }
                     else if (lContent.Contains("Authentication failed"))
                     {
                         lConnectionResponseMessage = Defines.ValueServerErrorConnectionResponseMessage;
                         lConnectionErrorType = ConnectionErrorType.EConnectionError_ServerSide_AuthenticationFailed;
                     }
-                    else if (lContent.Contains("To maintain your locationData session"))
-                    {
-                        lConnectionResponseMessage = Defines.ValueSessionTimeoutConnectionResponseMessage;
-                        lConnectionErrorType = ConnectionErrorType.EConnectionError_ServerSide_SessionTimeout;
-                    }
                     else
                     {
-                        if (Utilities.isValidJSON(lContent)) // For checking reposne is vaild JSON or not
-                        {
-                            //   SQLiteRowData rowData = new SQLiteRowData(RequestID, lContent);
-                            //  SQLiteManager.SharedInstance().SaveItem(rowData);
-                            //  if (SQLiteManager.SharedInstance().GetItemForKey(RequestID) != null)
-                            {
-                                Console.WriteLine("lcontent saved in SQLite");
-                                Console.WriteLine(RequestID + "---" + lContent);
-                                lIsDataSuccessFul = true;
-                            }
-                        }
-                        else
-                        {
-                            ExcepetionMainScreen(RequestID);
-                            return;
-                        }
+                        lIsDataSuccessFul = true;
                     }
                     Dictionary<String, Object> lDictionary = new Dictionary<string, object>();
                     lDictionary.Add(RequestID, lContent);
@@ -273,17 +248,6 @@ namespace MazdaInventory.Commons
             lResultDictionary[Defines.KeyConnectionResponseMessage] = Defines.ValueServerErrorConnectionResponseMessage;
             lResultDictionary[Defines.KeyConnectionResponseMessage] = lResultDictionary[Defines.KeyConnectionResponseMessage];
             lIConnectionCallbacks.ConnectionFailedWithError(lResultDictionary, RequestID);
-        }
-
-        public void SetDealerInformation(Dealer dealer, String reqId)
-        {
-            String lConnectionResponseMessage = "";
-
-            Dictionary<String, Object> lReturnDictionary = new Dictionary<String, Object>();
-            lReturnDictionary[Defines.KeyConnectionResponseHTTPStatusCode] = "200"; ;
-            lReturnDictionary[Defines.KeyConnectionResponseMessage] = lConnectionResponseMessage;
-            lReturnDictionary[Defines.KeyConnectionResponseContentObject] = dealer;
-            lIConnectionCallbacks.ConnectionWasSuccessFullWithResult(lReturnDictionary, reqId);
         }
 
         public Boolean GetDealerData(String searchType, String param1, String param2, IConnectionCallbacks callbackHandler, string requestID)

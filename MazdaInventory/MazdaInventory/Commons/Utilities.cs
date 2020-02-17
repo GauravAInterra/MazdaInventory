@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace MazdaInventory.Commons
@@ -236,25 +237,36 @@ namespace MazdaInventory.Commons
             return retValueStr;
         }
 
-        public static Dealer SaveDealerData(string sqliteDealerData)
+        public static List<Dealer> GetDealersFromResponse(string lContent)
         {
-            StreamReader lStreamReader = null;
-            tempDealerValue = null;
-            byte[] bytes = Encoding.ASCII.GetBytes(sqliteDealerData);
-            using (lStreamReader = new StreamReader(new MemoryStream(bytes)))
+            List<Dealer> dealerList = new List<Dealer>();
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(lContent);
+
+            XmlElement root = doc.DocumentElement;
+
+            string resultXML = root.Attributes["status"].Value;
+            Console.WriteLine("resultXML" + resultXML);
+            if (resultXML.Equals("ok"))
             {
-                XmlSerializer lXmlSerializer = new XmlSerializer(typeof(Dealer));
-                tempDealerValue = (Dealer)lXmlSerializer.Deserialize(lStreamReader);
+                XmlNodeList allDealer = root.GetElementsByTagName("dealers");
+                XmlDocument dealersDoc = new XmlDocument();
+                dealersDoc.LoadXml(allDealer[0].OuterXml);
+
+                XmlNodeList dealerNodeList = dealersDoc.GetElementsByTagName("dealer");
+                
+                foreach (XmlNode dealerNode in dealerNodeList)
+                {
+                    XmlDocument dealerDoc = new XmlDocument();
+                    dealerDoc.LoadXml(dealerNode.OuterXml);
+                    XmlElement dealerElement = dealerDoc.DocumentElement;
+                    Dealer dealer = new Dealer();
+                    dealer.Id = dealerElement.Attributes["id"].Value;
+                    dealer.Name = dealerElement.Attributes["name"].Value;
+                    dealerList.Add(dealer);
+                }
             }
-            if (tempDealerValue == null)
-            {
-                Console.Out.WriteLine("Dealer Response contained empty body...");
-            }
-            else
-            {
-                Utilities.DealerValue = tempDealerValue;
-            }
-            return tempDealerValue;
+            return dealerList;
         }
     }
 }
