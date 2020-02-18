@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:effects="clr-namespace:MazdaInventory.Effects;assembly=MazdaInventory"
              xmlns:local="clr-namespace:MazdaInventory.CustomRenderer;assembly=MazdaInventory"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
              mc:Ignorable="d"
              x:Class="MazdaInventory.MainPage"
              NavigationPage.HasNavigationBar="false">
@@ -45,10 +46,7 @@
                     </Grid>
                 </StackLayout>
                 <StackLayout Margin="10,0" Orientation="Horizontal">
-                    <StackLayout Orientation="Horizontal">
-                        <CheckBox x:Name="rememberMe" Color="#d5d5d5"  BackgroundColor="White" effects:RoundCornersEffect.CornerRadius="3" HeightRequest="20"></CheckBox>
-                        <Label Text="REMEMBER ME" HorizontalOptions="Start" VerticalOptions="Center" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
-                    </StackLayout>
+                    <input:CheckBox BoxSizeRequest="20" effects:RoundCornersEffect.CornerRadius="3" x:Name="rememberMe" BoxBackgroundColor="White" Color="#d5d5d5" Text="REMEMBER ME" Type="Check" HorizontalOptions="Start" VerticalOptions="Center" FontFamily="{StaticResource SemiBoldFont}" CheckChanged="RememberMeChecked" TextColor="#101010"/>
                     <Label x:Name="forgotPassword" Text="FORGOT PASSWORD" TextDecorations="Underline" VerticalOptions="Center" HorizontalOptions="EndAndExpand" FontFamily="{StaticResource SemiBoldFont}" FontSize="14" TextColor="#101010"/>
                 </StackLayout>
                 <Button x:Name="loginButton" Clicked="BtnLogin_Clicked" Text="LOGIN" BackgroundColor="#171717" WidthRequest="250" HeightRequest="40" HorizontalOptions="Center" Margin="0,85,0,51" FontFamily="{StaticResource SemiBoldFont}" FontSize="16" TextColor="White"/>

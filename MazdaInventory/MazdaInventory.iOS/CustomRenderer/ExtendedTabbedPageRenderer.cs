@@ -98,14 +98,14 @@ namespace MazdaInventory.iOS.CustomRenderer
         
         protected override Task<Tuple<UIImage, UIImage>> GetIcon(Page page)
         {
-            UIImage image;
+            UIImage image = new UIImage();
             if (page.Title == "App")
             {
-                image = UIImage.FromBundle(page.Icon.File).ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
+                //image = UIImage.FromBundle(page.Icon.File).ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
             }
             else
             {
-                image = UIImage.FromBundle(page.Icon.File).ImageWithRenderingMode(UIImageRenderingMode.Automatic);
+                //image = UIImage.FromBundle(page.Icon.File).ImageWithRenderingMode(UIImageRenderingMode.Automatic);
             }
 
             return Task.FromResult(new Tuple<UIImage, UIImage>(image, image));

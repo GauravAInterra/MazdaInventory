@@ -32,5 +32,11 @@
 	<string>Inventory</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>MazdaType-Bold.ttf</string>
+		<string>MazdaType-Medium.ttf</string>
+		<string>ss-gizmo.ttf</string>
+	</array>
 </dict>
 </plist>

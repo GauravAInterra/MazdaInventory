@@ -40,6 +40,20 @@ namespace MazdaInventory
 
         }
 
+        private void RememberMeChecked(object sender, EventArgs e)
+        {
+            if (rememberMe.IsChecked)
+            {
+                ShouldRememberMe = true;
+                rememberMe.BoxBackgroundColor = Color.Black;
+            }
+            else
+            {
+                ShouldRememberMe = false;
+                rememberMe.BoxBackgroundColor = Color.White;
+            }
+        }
+
         private void BtnLogin_Clicked(object sender, EventArgs e)
         {
             IsBusy = true;

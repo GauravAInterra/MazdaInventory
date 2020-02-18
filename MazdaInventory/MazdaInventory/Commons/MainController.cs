@@ -219,7 +219,7 @@ namespace MazdaInventory.Commons
                 // GC.Collect();
 
                 Dictionary<String, Object> lResultDictionary = (Dictionary<String, Object>)result;
-                String lContent = (String)lResultDictionary[Defines.KeyConnectionResponseContentString];
+                //String lContent = (String)lResultDictionary[Defines.KeyConnectionResponseContentString];
 
                 bool IsError = (bool)lResultDictionary[Defines.IsError];
                 bool IsExp = (bool)lResultDictionary[Defines.IsException];

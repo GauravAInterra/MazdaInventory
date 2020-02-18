@@ -4,19 +4,19 @@ using MazdaInventory.SQLLite;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using Xamarin.Forms;
 
 namespace MazdaInventory.Commons
 {
     class Utilities
     {
 
-        public static Dealer DealerValue;
-        public static Dealer tempDealerValue = null;
         public static CookieContainer CookieContainer = new CookieContainer();
         public static string getCookies()
         {
@@ -237,9 +237,27 @@ namespace MazdaInventory.Commons
             return retValueStr;
         }
 
-        public static List<Dealer> GetDealersFromResponse(string lContent)
+        public static int getHeightOfListView(int count)
         {
-            List<Dealer> dealerList = new List<Dealer>();
+            int heightRowList = 32;
+            count = (count * heightRowList);
+            return count;
+        }
+
+        public static void ExpandOrCollapse(Label label)
+        {
+            if (label.Text.Equals("&#x002D;"))
+            {
+                label.Text = "&#x002B;";
+            }
+            else
+            {
+                label.Text = "&#x002D;";
+            }
+        }
+
+        public static void GetDealersFromResponse(string lContent, ObservableCollection<Dealer> dealerList)
+        {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(lContent);
 
@@ -266,7 +284,6 @@ namespace MazdaInventory.Commons
                     dealerList.Add(dealer);
                 }
             }
-            return dealerList;
         }
     }
 }
