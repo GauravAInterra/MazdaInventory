@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using System.Xml;
 using MazdaInventory.Commons;
 using MazdaInventory.ConnectionManager;
@@ -14,8 +15,15 @@ namespace MazdaInventory
     public partial class DealerSearchPage : ContentPage, IConnectionCallbacks
     {
         public Boolean isDealer = false;
+        public Boolean isZipTapped = true;
+        public Boolean isDealerTapped = false;
+        public Boolean isCorpTapped = false;
+
         ObservableCollection<Dealer> dealers = new ObservableCollection<Dealer>();
         ObservableCollection<Dealer> favDealers = new ObservableCollection<Dealer>();
+        String selectedDealers = "";
+
+        ICommand MyCommand;
 
         public DealerSearchPage(Boolean isDealer)
         {
@@ -37,6 +45,23 @@ namespace MazdaInventory
                 corpHeading.IsVisible = false;
             }
             radius.SelectedIndex = 0;
+
+            MyCommand = new Command(() =>
+            {
+                selectedDealers = "";
+                for (int i = 0; i < dealers.Count; i++)
+                {
+                    Dealer item = dealers[i];
+
+                    if (item.RowCheck)
+                    {
+                        selectedDealers = selectedDealers + item.Id + "|";
+                    }
+                }
+                selectedDealers = selectedDealers.Substring(0, selectedDealers.Length - 1);
+                App.Current.MainPage.DisplayAlert("Title", selectedDealers + " item have been selected", "Cancel");
+
+            });
         }
 
         private void OnZipTapped(object sender, EventArgs e)
@@ -50,6 +75,9 @@ namespace MazdaInventory
             zipContent.IsVisible = true;
             dealerContent.IsVisible = false;
             corpContent.IsVisible = false;
+            isZipTapped = true;
+            isDealerTapped = false;
+            isCorpTapped = false;
         }
         private void OnDealerTapped(object sender, EventArgs e)
         {
@@ -62,6 +90,9 @@ namespace MazdaInventory
             zipContent.IsVisible = false;
             dealerContent.IsVisible = true;
             corpContent.IsVisible = false;
+            isZipTapped = false;
+            isDealerTapped = true;
+            isCorpTapped = false;
         }
         private void OnCorpTapped(object sender, EventArgs e)
         {
@@ -74,34 +105,57 @@ namespace MazdaInventory
             zipContent.IsVisible = false;
             dealerContent.IsVisible = false;
             corpContent.IsVisible = true;
+            isZipTapped = false;
+            isDealerTapped = false;
+            isCorpTapped = true;
         }
         private void searchClicked(object sender, EventArgs e)
         {
             IsBusy = true;
+            dealers = new ObservableCollection<Dealer>();
             dealerList.ItemsSource = "";
-            favDealerList.ItemsSource = "";
-            int distance = 50;
-            switch (radius.SelectedIndex)
-            {
-                case 0:
-                    distance = 50;
-                    break;
-                case 1:
-                    distance = 100;
-                    break;
-                case 2:
-                    distance = 150;
-                    break;
-                case 3:
-                    distance = 200;
-                    break;
-                case 4:
-                    distance = 250;
-                    break;
-
-            }
             MainController ms = new MainController();
-            ms.GetDealerData("zip", zipCode.Text, distance+"",this, "zip");
+            if (isZipTapped)
+            {
+                int distance = 50;
+                switch (radius.SelectedIndex)
+                {
+                    case 0:
+                        distance = 50;
+                        break;
+                    case 1:
+                        distance = 100;
+                        break;
+                    case 2:
+                        distance = 150;
+                        break;
+                    case 3:
+                        distance = 200;
+                        break;
+                    case 4:
+                        distance = 250;
+                        break;
+
+                }
+                ms.GetDealerData("zip", zipCode.Text, distance + "", this, "zip");
+            }
+            else if (isDealerTapped)
+            {
+                ms.GetDealerData("name", dealerName.Text, "", this, "name");
+            }
+        }
+
+        private void DealerChecked(object sender, EventArgs e)
+        {
+            Plugin.InputKit.Shared.Controls.CheckBox checkBox = (Plugin.InputKit.Shared.Controls.CheckBox)sender;
+            if (checkBox.IsChecked)
+            {
+                checkBox.BoxBackgroundColor = Color.Black;
+            }
+            else
+            {
+                checkBox.BoxBackgroundColor = Color.White;
+            }
         }
 
         private void nextClicked(object sender, EventArgs e)
@@ -109,10 +163,6 @@ namespace MazdaInventory
             Navigation.PushAsync(new FilterPage());
         }
 
-        private void DealerChecked(object sender, EventArgs e)
-        {
-            
-        }
         public void ConnectionWasSuccessFullWithResult(object result, string RequestID)
         {
             IsBusy = false;
@@ -141,15 +191,14 @@ namespace MazdaInventory
                     Dealer dealer = new Dealer();
                     dealer.Id = dealerElement.Attributes["id"].Value;
                     dealer.Name = dealerElement.Attributes["name"].Value;
+                    dealer.RowCheck = false;
+                    dealer.CheckedCommand = MyCommand;
                     dealers.Add(dealer);
                 }
                 dealerList.HeightRequest = Utilities.getHeightOfListView(dealers.Count);
                 dealerList.ItemsSource = dealers;
-
-                favDealerList.HeightRequest = Utilities.getHeightOfListView(dealers.Count);
-                favDealerList.ItemsSource = dealers;
             }
-            DisplayAlert("Success", "Success","Ok");
+            DisplayAlert("Success", "Success", "Ok");
         }
 
         public void ConnectionFailedWithError(object error, string RequestID)

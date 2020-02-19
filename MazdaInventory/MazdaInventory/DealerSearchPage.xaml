@@ -82,7 +82,7 @@
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout Orientation="Horizontal" Padding="10,0,0,0">
-                                            <input:CheckBox BoxSizeRequest="20" effects:RoundCornersEffect.CornerRadius="3" x:Name="{Binding Id}" BoxBackgroundColor="White" Color="#d5d5d5" Text="{Binding Name}" Type="Check" HorizontalOptions="Start" VerticalOptions="Center" FontFamily="{StaticResource SemiBoldFont}" CheckChanged="DealerChecked" TextColor="#101010" TextFontSize="16"/>
+                                            <input:CheckBox BoxSizeRequest="20" effects:RoundCornersEffect.CornerRadius="3" x:Name="{Binding Id}" BoxBackgroundColor="White" Color="#d5d5d5" Text="{Binding Name}" Type="Check" HorizontalOptions="Start" VerticalOptions="Center" FontFamily="{StaticResource SemiBoldFont}" TextColor="#101010" TextFontSize="16"/>
                                             <Label Text="&#xE0D0;" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="10,0" FontFamily="{StaticResource IconFont}" FontSize="32" TextColor="#999999"/>
                                         </StackLayout>
                                     </ViewCell>
@@ -105,7 +105,7 @@
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout Orientation="Horizontal" Padding="10,0,0,0">
-                                            <input:CheckBox BoxSizeRequest="20" effects:RoundCornersEffect.CornerRadius="3" x:Name="{Binding Id}" BoxBackgroundColor="White" Color="#d5d5d5" Text="{Binding Name}" Type="Check" HorizontalOptions="Start" VerticalOptions="Center" FontFamily="{StaticResource SemiBoldFont}" CheckChanged="DealerChecked" TextColor="#101010" TextFontSize="16"/>
+                                            <input:CheckBox BoxSizeRequest="20" effects:RoundCornersEffect.CornerRadius="3" BoxBackgroundColor="White" Color="#d5d5d5" Text="{Binding Name}"  Type="Check" HorizontalOptions="Start" VerticalOptions="Center" FontFamily="{StaticResource SemiBoldFont}" CheckChanged="DealerChecked" CheckChangedCommand="{Binding CheckedCommand}" IsChecked="{Binding RowCheck , Mode=TwoWay}" TextColor="#101010" TextFontSize="16"/>
                                             <Label Text="&#x2665;" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="10,0" FontFamily="{StaticResource IconFont}" FontSize="32" TextColor="#999999"/>
                                         </StackLayout>
                                     </ViewCell>

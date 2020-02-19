@@ -239,7 +239,7 @@ namespace MazdaInventory.Commons
 
         public static int getHeightOfListView(int count)
         {
-            int heightRowList = 32;
+            int heightRowList = 40;
             count = (count * heightRowList);
             return count;
         }
