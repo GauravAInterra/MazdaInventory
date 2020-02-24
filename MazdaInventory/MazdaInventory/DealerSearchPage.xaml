@@ -61,11 +61,11 @@
                 <StackLayout x:Name="corpContent" IsVisible="False">
                     <StackLayout Margin="10">
                         <Label Text="REGION" HorizontalOptions="Start" VerticalOptions="Start" Margin="5,0,0,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="12" TextColor="#101010"/>
-                        <local:RoundedBorderPicker Image="arrowDown" TextColor="#101010" x:Name="region" FontSize="16" FontFamily="{StaticResource SemiBoldFont}"/>
+                        <local:RoundedBorderPicker Image="DropDown" TextColor="#101010" x:Name="region" FontSize="16" FontFamily="{StaticResource SemiBoldFont}"/>
                     </StackLayout>
                     <StackLayout Margin="10">
                         <Label Text="DISTRICT" HorizontalOptions="Start" VerticalOptions="Start" Margin="5,0,0,0" FontFamily="{StaticResource SemiBoldFont}" FontSize="12" TextColor="#101010"/>
-                        <local:RoundedBorderPicker Image="arrowDown" TextColor="#101010" x:Name="district" FontSize="16"/>
+                        <local:RoundedBorderPicker Image="DropDown" TextColor="#101010" x:Name="district" FontSize="16"/>
                     </StackLayout>
                 </StackLayout>
                 <Button x:Name="searchButton" Clicked="searchClicked" Text="SEARCH" BackgroundColor="#171717" WidthRequest="250" HeightRequest="40" HorizontalOptions="Center" Margin="20" FontFamily="{StaticResource SemiBoldFont}" FontSize="16" TextColor="White"/>
