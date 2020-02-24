@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+//Common Define File
 namespace MazdaInventory.Commons
 {
     public class Defines
